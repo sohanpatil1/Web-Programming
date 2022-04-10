@@ -18,10 +18,13 @@ lant Step: All on the Line */
     font-family: 'Montserrat';
     font-weight: bold;
     font-style: italic;
+    /* font-size: 50px; */
     /* background-color: yellow; */
     /* margin-right: 50px; */
 }
-
+/* h1#title1.header_element{
+    font-size: 50px;
+} */
 /* Circle, Name of website, William Title */
 header{
     display:flex;
@@ -99,7 +102,7 @@ main{
     padding-left: 10px; */
     width:100%;
     height: 100%;
-    padding-left: 50px;
+    /* padding-left: 50px; */
     /* background-color: tan */
 }
 
@@ -115,24 +118,24 @@ img {
     flex-wrap: wrap;
     /* background-color: cyan; */
     font-size: 20px;
-    width:35%;
+    width:100%;
     height:100%;
-    /* padding-left:120px; */
+    margin-left:170px;
+    padding-right: 45px;
 }
-/* p.bodytext{
-    padding-left:40px;
-    padding-right: 40px;
-    font-size: 20px;
-} */
 
 .tile2{
     display:flex;
     flex-direction: column;
     align-items: center;
     flex-wrap: wrap;
-    width: 50%;
+    font-size: 20px;
+    width: 100%;
     height:100%;
-    justify-content: flex-end;
+    margin-right: 170px;
+    padding-left: 45px;
+
+    /* justify-content: flex-end; */
 }
 figcaption{
     font-size: 14px;
