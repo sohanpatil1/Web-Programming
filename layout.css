@@ -1,0 +1,149 @@
+/*
+    For classes class = "highlite"
+    .highlite{
+        color:DarkCyan
+    }
+    For id = "offset"
+    #offset{
+        color:"DarkCyan"
+    }
+*/
+
+/* William T. Wiley and the
+lant Step: All on the Line */
+
+.Titlecontent{
+    display:flex;
+    flex-direction: column;
+    font-family: 'Montserrat';
+    font-weight: bold;
+    font-style: italic;
+    /* background-color: yellow; */
+    /* margin-right: 50px; */
+}
+
+/* Circle, Name of website, William Title */
+header{
+    display:flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 50px;
+    padding-right: 50px;
+    /* background-color: green; */
+}
+
+hr{
+    background-color: #008278;
+    position:absolute;
+    z-index: -1;
+    height : 190px;
+    width: 100%;
+    opacity: 0.1;
+    margin-top: 100px;
+    /* Z index is for layers */
+}
+
+#logo_area{
+    display:flex;
+    flex-direction: row;
+    align-items: center;
+    /* background-color: orange; */
+} 
+
+/* jan shrem and maria */
+#logotext1{ 
+    display:flex;
+    flex-direction: column;
+    font-size: 16px;
+    font-family: 'Montserrat';
+    /* background-color: blue; */
+}
+
+/* manetti shrem */
+#logotext2{
+    display:flex;
+    flex-direction: column;
+    font-size: 16px;
+    font-weight: bold;
+    color: #008278;
+    font-family: 'Montserrat';
+    /* background-color: red; */
+}
+
+/* museum of art */
+#logotext3{
+    display:flex;
+    flex-direction: column;
+    font-size: 16px;
+    font-family: 'Montserrat';
+    /* background-color: purple; */
+}
+
+/* Circle */
+img.logo_element{
+    width: 100px;
+    height: 100px;
+    /* margin: 15px; */
+    /* background-color: cyan; */
+}
+
+main{
+    display:flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    font-family: 'Montserrat';
+    /* padding-right: 10px;
+    padding-left: 10px; */
+    width:100%;
+    height: 100%;
+    padding-left: 50px;
+    /* background-color: tan */
+}
+
+img {
+    width: 100%;
+    /* background-color: brown; */
+}
+
+.tile1{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    flex-wrap: wrap;
+    /* background-color: cyan; */
+    font-size: 20px;
+    width:35%;
+    height:100%;
+    /* padding-left:120px; */
+}
+/* p.bodytext{
+    padding-left:40px;
+    padding-right: 40px;
+    font-size: 20px;
+} */
+
+.tile2{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 50%;
+    height:100%;
+    justify-content: flex-end;
+    /* background-color: darkgray; */
+}
+figcaption{
+    font-size: 14px;
+}
+figure{
+    margin: 0px;
+}
+@media only screen and (max-width: 1000px) 
+{
+    .Titlecontent{
+        font-size: 24;
+    }
+}
