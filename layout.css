@@ -133,7 +133,6 @@ img {
     width: 50%;
     height:100%;
     justify-content: flex-end;
-    /* background-color: darkgray; */
 }
 figcaption{
     font-size: 14px;
@@ -147,3 +146,4 @@ figure{
         font-size: 24;
     }
 }
+/* Hello */
