@@ -61,6 +61,7 @@ header{
     display:flex;
     flex-direction: row;
     align-items: center;
+    padding-right: 5px;
     /* background-color: orange; */
 } 
 
@@ -258,4 +259,14 @@ figure{
         padding : 0%
     }
 }
-/* Hello */
+/* The next media tag is for fixing small issues related to the header */
+@media only screen and (max-width: 1080px) 
+{
+    #logo_area{
+        display: flex;
+        flex-direction: column;
+    }
+    #logo_text{
+        padding-top: 10px;
+    }
+}
