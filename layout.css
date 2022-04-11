@@ -136,13 +136,18 @@ img {
 }
 
 p.bodytext#tile1id{
-    padding-top: 30px;}
+    padding-top: 40px;
+}
 
 p.bodytext#tile2id{
     padding-bottom: 30px;
     padding-top: 20px;
+    display: none;
 }
-
+p.bodytext#tile2idbelow{
+    padding-bottom: 30px;
+    padding-top: 40px;
+}
 .tile2{
     display:flex;
     flex-direction: column;
@@ -231,6 +236,16 @@ figure{
     }
     figcaption.tile2{
         font-size: 14px;
+    }
+    p.bodytext#tile2id{
+        padding-bottom: 30px;
+        padding-top: 50px;
+        display: flex
+    }
+    p.bodytext#tile2idbelow{
+        padding-bottom: 30px;
+        padding-top: 20px;
+        display: none;
     }
     .bodytext{
         padding-top: 50px;
