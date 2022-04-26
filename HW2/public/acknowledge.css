@@ -1,0 +1,33 @@
+body{
+    display:flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    height:100%;
+}
+#container{
+    display:flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+#titleName{
+    font-family: "Boogaloo";
+    font-size: 48px;
+}
+#dynamicContent{
+    color: #ee1d52;
+    opacity: 90%;
+    font-family: "Boogaloo";
+}
+#continueButton{
+    border-radius: 15px;
+    height: 65px;
+    width: 195px;
+    background-color: #EE1D52;
+    color: White;
+    font-size: 20px;
+    font-weight: bold;
+    font-family: "Inter Semi";
+    opacity: 0.9;
+}

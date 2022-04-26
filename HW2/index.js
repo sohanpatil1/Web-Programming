@@ -9,26 +9,32 @@ const app = express();
 // make all the files in 'public' available 
 app.use(express.static("public"));
 
+app.use(express.text());	
 // Code in this section sets up an express pipeline
 
-// print info about incoming HTTP request 
-// for debugging
-//req : request : object I use to interact with tht HTTP request
-//res : response
 app.use(function(req, res, next) {
 	console.log(req.method, req.url);
 	next();
 })
 
+app.post("/videoData", (request, response) => {
+	console.log("server got request at : ",request.url);
+	console.log(request.body);
+	response.send({message: "got POST"});
+});
 
 
-// if no file specified, return the main page
+// if no file specified, return to the main page
 app.get("/", (request, response) => {
 	response.sendFile(__dirname + "/public/tiktokpets.html");
 });
 
 // Need to add response if page not found!
-
+app.use(function(req, res){
+	res.status(404); 
+	res.type('txt'); 
+	res.send('404 - File '+req.url+' not found'); 
+});
 // end of pipeline specification
 
 // Now listen for HTTP requests

@@ -1,35 +1,58 @@
 <!doctype HTML> 
 
-<HTML> 
+<html> 
   
-<HEAD>
-  <meta charset="utf-8" /> 
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!--  UNCOMMENT THE LINE BELOW LATER!!!-->
-  <!-- <link rel="stylesheet" type="text/css" href="https://ecs-162-spring-2022.profamenta.repl.co/reset.css" /> --> 
+  <head>
+    <meta charset="utf-8" /> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link rel="stylesheet" type="text/css" href="https://ecs-162-spring-2022.profamenta.repl.co/reset.css" />  -->
+    <link rel="stylesheet" type="text/css" href="./tiktokpets.css" /> 
+    <link href="https://fonts.googleapis.com/css?family=Boogaloo" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Inter" rel="stylesheet">
+    <script defer type="text/javascript" src="./tiktokpets.js"></script>
+    <title>
+      Assignment 1
+    </title>
+  </head>
 
-  <script defer src="tiktokpets.js"></script>
-</HEAD>
+  <body> 
 
-<body> 
+    <div id="container">
+      <div id="Title">
+        <h1>Tiktok Pets</h1>
+      </div>
+      <div id="outerMyVideos">
+        <div id="myVideos">
+          <input type="button" id="myVideos" value="My Videos"/>
+        </div>
+      </div>
+    </div>
+    <div id="main">
+      <div id="submitVideo">
+        <h3 class="mainText">Submit a video:</h3>
+      </div> 
 
-<h1>Tiktok Pets</h1>
-<br>
-<h3>Submit a video:</h3>
-<br>
-<p>Username: </p>
-<input type="text" id="username">
-<br>
-<p>Tiktok URL: </p>
-<input type="text" id="tiktokURL">
-<br>
-<p>Video Nickname: </p>
-<input type="text" id="videoNickname">
-<br>
-<br>
-<input type="button" value="Continue" id="submitContinue">
-<br>
+      <div id="usernameDiv">
+        <p class="mainText">Username: </p>
+        <input type="text" id="username" class="mainInput"> <br>
+      </div>
 
-</body>
+      <div id="URLDiv">
+        <p class="mainText">Tiktok URL: </p>
+        <input type="text" id="tiktokURL" class="mainInput"> <br>
+      </div>
+      
+      <div id="nicknameDiv">
+        <p class="mainText">Video Nickname: </p>
+        <input type="text" id="videoNickname" class="mainInput"><br>
+      </div>
+
+    </div>
+    <div id="buttonArea">
+      <button id="continueButton">Continue</button>
+    </div>
+    
+
+  </body>
 
 </html> 

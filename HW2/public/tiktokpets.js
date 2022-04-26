@@ -1,14 +1,39 @@
-let submit_button = document.getElementById('submitContinue');
+"use strict";
 
-submit_button.addEventListener('click', submitFormContents);
+let submitbutton = document.getElementById("continueButton")
+submitbutton.addEventListener("click", myParser);
 
-function submitFormContents(){
-    let username = document.getElementById('username').textContent;
-    let tiktokURL = document.getElementById('tiktokURL').textContent;
-    let videoNickname = document.getElementById('videoNickname').textContent;
 
+function myParser() {
+    let username = document.getElementById("username").value;
+    let tiktokurl = document.getElementById("tiktokURL").value;
+    let nickname = document.getElementById("videoNickname").value;
     console.log(username);
-    console.log(tiktokURL);
-    console.log(videoNickname);
-    return ;
-}
+    console.log(tiktokurl);
+    console.log(nickname);
+    let values = username+"-["+tiktokurl+"-["+nickname
+    sendPostRequest('/videoData',values)
+    return;
+  };
+
+  async function sendPostRequest(url,data) {
+    console.log("about to send post request");
+    console.log(data);
+    let response = await fetch(url, {   //Fetch: API Call
+      method: 'POST', 
+      headers: {'Content-Type': 'text/plain'},
+      body: data });
+
+    if (response.ok) {
+        let responseData = await response.json();
+        console.log(responseData);
+        
+        sessionStorage.setItem("content",data);
+        location.href = "/acknowledge.html";
+        return data;
+    } 
+    else {
+        throw Error(response.status);
+    }
+  }
+
