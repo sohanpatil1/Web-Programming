@@ -1,28 +1,29 @@
-<!doctype HTML>
+<!doctype HTML> 
 
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+<HTML> 
+  
+<HEAD>
+  <meta charset="utf-8" /> 
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="https://ecs-162-spring-2022.profamenta.repl.co/reset.css" /> 
+  <link rel="stylesheet" type="text/css" href="redirect.css" /> 
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:400,700">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Boogaloo:400,700">
 
-    <title>Document</title>
-</head>
-<body>
-    <header class="redirect">
-      <h1>Tiktok Pets</h1>
-    </header>
-    
-    <h2 id="uploaded"></h2>
-    <script>
-        document.getElementById("uploaded").innerHTML = 
-        `<h1>The video
-        <span>'${sessionStorage.getItem("nickname")}'</span> 
-        submitted successfully!
-        </h1>`;
-    </script>
-<!--   This is very silly... But its only for debugging purposes. -->
-  <button href="/tiktokpets.html">Continue</button>
+  <script defer src="redirect.js"></script>
+</HEAD>
+
+<body> 
+
+<div class="top-container">
+  <h1>Tiktok Pets</h1>
+</div>
+
+<div class="main-container">
+  <h2>Video <span id="dynamic-part"></span> submitted successfully!</h2>
+  <input type="button" value="Continue" id="redirect-page-continue">
+</div>
+
 </body>
-</html>
+
+</html> 

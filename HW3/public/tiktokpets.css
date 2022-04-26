@@ -1,0 +1,205 @@
+.top-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    margin:50px;
+    /* padding-left: 120px; */
+}
+
+
+
+
+
+.main-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 90%;
+    max-width: 500px;
+    background-image: linear-gradient( 115deg, rgb(238, 29, 82, 0.9) 15%, rgb(105, 201, 208) 75%);
+    border-radius: 20px;
+    margin: 30px;
+    padding-top: 70px;
+    padding-bottom: 70px;
+    box-shadow: 0 0 5px 3px lightgray;
+    margin-bottom: 50px;
+}
+
+#submit-a-vid-title {
+    padding-bottom: 30px;
+}
+
+
+h3 {
+    font-family: "Inter";
+    font-weight: Semi-Bold;
+    font-size: 24px;
+}
+
+.label-textfield-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    margin: 15px;
+    width: 75%;
+
+}
+
+
+h1 {
+    font-family: "Boogaloo";
+    font-size: 48px;
+    color: black;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    color: white;
+    width: 100%;
+    font-family: "Inter";
+    font-weight: Semi-Bold;
+    font-size: 16px;
+}
+
+
+
+input[type=button]{
+    background-color: rgb(238, 29, 82, 0.9);
+    color: white;
+    font-family: "Inter";
+    font-weight: Semibold;
+    font-size: 20px;
+    /* margin: 10px; */
+    padding: 15px;
+    padding-left: 30px;
+    padding-right: 30px;
+    border-radius: 20px;
+    border-color: white;
+    /* border: 50px; */
+    box-shadow: 0 0 5px 2px lightgray;
+
+}
+
+
+input[type=text]{
+    /* background-color: white; */
+    border: 1px solid cyan;
+    color: black;
+    font-size: 16px;
+    /* margin: 10px; */
+    padding: 5px;
+    padding-left: 15px;
+    padding-right: 15px;
+    border-radius: 15px;
+    width: 95%;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+
+/* TABLET VIEW */
+@media (max-width: 900px) { 
+    #filler-element {
+        display: none
+    }
+
+    .top-container {
+        justify-content: center;
+        padding-bottom: 55px;
+    }
+
+    #logo {
+        margin-right: 75px;
+    }
+
+    #myVideos {
+        margin-left: 75px;
+    }
+
+}
+
+/* WEIRD PLACE BETWEEN TABLET AND MOBILE */
+@media (max-width: 550px) { 
+
+    #logo {
+        margin-right: 55px;
+    }
+
+    #myVideos {
+        margin-left: 55px;
+    }
+
+}
+
+
+
+/* MOBILE VIEW */
+@media (max-width: 480px){
+
+    h1 {
+        font-size: 32px;
+    }
+
+    h3 {
+        font-size: 20px;
+    }
+
+    input[type=button]{
+        font-size: 16px;
+        padding-top: 13px;
+        padding-bottom: 13px;
+        border-radius: 15px;
+        padding-left: 25px;
+        padding-right: 25px;
+    }
+
+
+    .main-container {
+        margin: 10px;
+        margin-bottom: 70px;
+        padding-top: 30px;
+        padding-bottom: 40px;
+        width: 85%;
+    }
+    
+    #submit-a-vid-title {
+        padding-bottom: 25px;
+        padding-top: 20px;
+    }
+
+    .label-textfield-container {
+        margin: 5px;
+        width: 85%;
+        padding-right: 12px;
+    }
+
+    input[type=text]{
+        padding: 12px;
+        border-radius: 16px;
+    }
+
+    .top-container {
+        margin: 30px;
+        padding-bottom: 20px;
+        justify-content: space-around;
+    }
+
+    #logo {
+        margin-right: 0px;
+    }
+
+    #myVideos {
+        margin-left: 0px;
+    }
+    
+    
+
+}
+
