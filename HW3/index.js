@@ -36,6 +36,8 @@ app.post("/videoData", async function (request, response){
 
 app.get("/getMostRecent" , async function(request,response){
   console.log("getMostRecent GET request to server called")
+  console.log("The content is: ",db.run("SELECT * FROM VideoTable WHERE flag=1"))
+
   db.run("SELECT * FROM VideoTable WHERE flag=1")
   .then((response)=>{
     console.log("This is the response",response)
@@ -93,8 +95,8 @@ async function insertVideo(v) {
   if(dbLength>1)
   {
     console.log("Inside if case")
-    sql = "UPDATE VideoTable SET flag=0 where flag=1;";
-    await db.run(sql);
+    cmd = "UPDATE VideoTable SET flag=0 where flag=1;";
+    await db.run(cmd);
     console.log("After running command")
   }
   await db.run(sql,[v.tiktokURL, v.videoNickname, v.username]); 
