@@ -10,7 +10,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@mapbox/node-pre-gyp": "^1.0.9",
     "express": "^4.17.3",
-    "express-session": "^1.17.2"
+    "express-session": "^1.17.2",
+    "sqlite3": "^5.0.5"
   }
 }

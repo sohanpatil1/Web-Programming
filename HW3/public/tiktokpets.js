@@ -12,13 +12,34 @@ async function postContents(vidContents) {
       },
       body: JSON.stringify(vidContents)
     });
+    let jsonResponse = await response.json();
 
     if (response.status == 200){
-        sessionStorage.setItem("videoNickname", vidContents.videoNickname);
-        location.href = "redirect.html";
+        if(jsonResponse.message == "database full")
+        {
+            alert("The database is full")
+        }
+        else
+        {
+            console.log(response)
+        }
     }
-    return response.json();
-  }
+    return jsonResponse;
+}
+
+async function getContents(){
+    const response = await fetch("/getMostRecent", {
+        method: 'GET',
+    });
+    let jsonResponse = await response.json();
+    
+    if (response.status == 200){
+        sessionStorage.setItem("videoNickname", vidContents.videoNickname);
+        location.href = "./videoPreview.html";
+    }
+    console.log("We got this content: {}".format(jsonResponse))
+    return jsonResponse;
+}
 
 function submitFormContents(){
     let username = document.getElementById('username').value;
@@ -42,14 +63,24 @@ function submitFormContents(){
 
     let obj = {username: username, tiktokURL: tiktokURL, videoNickname: videoNickname};
 
-    postContents(obj).then(data => {
+    postContents(obj)
+    .then(data => {
         console.log("Response from server:", data);
+        
+        getContents()
+        .then(content => {
+            console.log("Content from server: {}".format(content))
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        })
     })
     .catch(error => {
         console.error('Error:', error);
     });
 
-    return ;
+    
+    return;
 }
 
 function isEmpty(str) {

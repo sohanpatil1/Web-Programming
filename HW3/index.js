@@ -1,41 +1,61 @@
-// index.js
-// This is our main server file
-
 // include express
+const { request } = require("express");
 const express = require("express");
-;
-// create object to interface with express
+const { type } = require("express/lib/response");
 const app = express();
+const db = require('./public/sqlWrap');
+
 
 // Code in this section sets up an express pipeline
 
-// print info about incoming HTTP request 
-// for debugging
+
 app.use(function(req, res, next) {
   console.log(req.method, req.url);
   next();
 })
 
-// make all the files in 'public' available 
 app.use(express.static("public"));
 
-// a module to use instead of older body-parser; not needed yet, but very useful!
 app.use(express.json());
 
-app.post("/videoData", (request, response) => {
-  console.log(request.body);
 
+app.post("/videoData", async function (request, response){
+  let dbLengthjson = await db.get("SELECT COUNT(*) AS Counter FROM VideoTable");
+  let dbLength = dbLengthjson["Counter"]
+  if(dbLength>=20)
+  {
+    console.log({message: "8 Elements already added"});
+    response.send({message:"database full"});
+    return;
+  }
+  databaseCodeExample(request.body, response); //inserting to database  
   response.send({message:"got POST"});
-
+  return;
 });
 
 
-// if no file specified, return the main page
+app.get("/getMostRecent" , async function(request,response){
+  console.log("getMostRecent GET request to server called")
+  db.run("SELECT * FROM VideoTable WHERE flag=1")
+  .then((response)=>{
+    console.log("This is the response",response)
+  })
+  .catch((error) =>{
+    console.log(error)
+  });
+  dumpTable()
+  .then(function(result) {
+    console.log("whole table: looks like this\n",result);
+  })
+  
+});
+
+
 app.get("/", (request, response) => {
   response.sendFile(__dirname + "/public/tiktokpets.html");
 });
 
-// Need to add response if page not found!
+
 app.use(function(req, res){
   res.status(404);
   res.type('txt');
@@ -49,3 +69,52 @@ app.use(function(req, res){
 const listener = app.listen(3000, function() {
   console.log("The static server is listening on port " + listener.address().port);
 });
+
+
+
+function databaseCodeExample(vidObj) {
+
+  insertVideo(vidObj)
+    .then(function() {
+      console.log("success! No errors")
+    })
+    .catch(function(err) {
+      console.log("SQL error",err)} );
+}
+
+// An async function to insert a video into the database
+async function insertVideo(v) {
+  console.log("Inside insertvideo function")
+  v = JSON.stringify(v);
+  let sql = "insert into VideoTable (url,nickname,userid,flag) values (?,?,?,TRUE)";
+  v = JSON.parse(v)
+  let dbLengthjson = await db.get("SELECT COUNT(*) AS Counter FROM VideoTable");
+  let dbLength = dbLengthjson["Counter"]
+  if(dbLength>1)
+  {
+    console.log("Inside if case")
+    sql = "UPDATE VideoTable SET flag=0 where flag=1;";
+    await db.run(sql);
+    console.log("After running command")
+  }
+  await db.run(sql,[v.tiktokURL, v.videoNickname, v.username]); 
+  console.log("After running query")
+}
+
+// an async function to get a video's database row by its nickname
+async function getVideo(nickname) {
+
+  const sql = 'select * from VideoTable where nickname = ?';
+
+  let result = await db.get(sql, [nickname]);
+  return result;
+}
+
+// an async function to get the whole contents of the database 
+async function dumpTable() {
+  const sql = "select * from VideoTable"
+  
+  let result = await db.all(sql)
+  
+  return result;
+}
