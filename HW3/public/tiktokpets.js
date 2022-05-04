@@ -13,7 +13,7 @@ async function postContents(vidContents) {
       body: JSON.stringify(vidContents)
     });
     let jsonResponse = await response.json();
-
+    console.log(response)
     if (response.status == 200){
         if(jsonResponse.message == "database full")
         {
@@ -31,14 +31,14 @@ async function getContents(){
     const response = await fetch("/getMostRecent", {
         method: 'GET',
     });
-    let jsonResponse = await response.json();
+    console.log(response.json())
+    // let jsonResponse = response.json();
     
     if (response.status == 200){
-        sessionStorage.setItem("videoNickname", vidContents.videoNickname);
         location.href = "./videoPreview.html";
     }
-    console.log("We got this content: {}".format(jsonResponse))
-    return jsonResponse;
+    console.log("We got this content: ",response)
+    return response;
 }
 
 function submitFormContents(){
@@ -69,7 +69,7 @@ function submitFormContents(){
         
         getContents()
         .then(content => {
-            console.log("Content from server: {}".format(content))
+            console.log("Content from server: ",content)
         })
         .catch(error => {
             console.error('Error:', error);

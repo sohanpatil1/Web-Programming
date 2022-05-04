@@ -26,30 +26,24 @@ app.post("/videoData", async function (request, response){
   {
     console.log({message: "8 Elements already added"});
     response.send({message:"database full"});
-    return;
   }
   databaseCodeExample(request.body, response); //inserting to database  
   response.send({message:"got POST"});
-  return;
+  console.log("Sent response: got POST")
 });
 
 
-app.get("/getMostRecent" , async function(request,response){
-  console.log("getMostRecent GET request to server called")
-  console.log("The content is: ",db.run("SELECT * FROM VideoTable WHERE flag=1"))
-
-  db.run("SELECT * FROM VideoTable WHERE flag=1")
-  .then((response)=>{
-    console.log("This is the response",response)
+app.get("/getMostRecent" , async function(request,response){  
+  await db.all("SELECT * FROM VideoTable WHERE flag=1")
+  // await db.run("UPDATE VideoTable SET flag=0 where flag=1")
+  .then((value)=>{
+    console.log("This is the response",value)
+    response.send(value)
+    
   })
   .catch((error) =>{
     console.log(error)
   });
-  dumpTable()
-  .then(function(result) {
-    console.log("whole table: looks like this\n",result);
-  })
-  
 });
 
 
@@ -79,6 +73,10 @@ function databaseCodeExample(vidObj) {
   insertVideo(vidObj)
     .then(function() {
       console.log("success! No errors")
+    dumpTable()
+    .then(function(result) {
+      console.log("whole table: looks like this\n",result);
+  })
     })
     .catch(function(err) {
       console.log("SQL error",err)} );
@@ -86,7 +84,6 @@ function databaseCodeExample(vidObj) {
 
 // An async function to insert a video into the database
 async function insertVideo(v) {
-  console.log("Inside insertvideo function")
   v = JSON.stringify(v);
   let sql = "insert into VideoTable (url,nickname,userid,flag) values (?,?,?,TRUE)";
   v = JSON.parse(v)
@@ -94,13 +91,11 @@ async function insertVideo(v) {
   let dbLength = dbLengthjson["Counter"]
   if(dbLength>1)
   {
-    console.log("Inside if case")
     cmd = "UPDATE VideoTable SET flag=0 where flag=1;";
     await db.run(cmd);
-    console.log("After running command")
   }
   await db.run(sql,[v.tiktokURL, v.videoNickname, v.username]); 
-  console.log("After running query")
+  console.log("Inserted element")
 }
 
 // an async function to get a video's database row by its nickname
