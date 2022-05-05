@@ -6,22 +6,24 @@
   <meta charset="utf-8" /> 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" type="text/css" href="https://ecs-162-spring-2022.profamenta.repl.co/reset.css" /> 
-  <link rel="stylesheet" type="text/css" href="redirect.css" /> 
+  <link rel="stylesheet" type="text/css" href="myVideos.css" /> 
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:400,700">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Boogaloo:400,700">
 
-  <script defer src="redirect.js"></script>
+  <script defer src="myVideos.js"></script>
 </HEAD>
 
 <body> 
 
-<div class="top-container">
-  <h1>My Vidoes</h1>
-</div>
+  <div class="top-container">
+    <!-- THE ELEMENT BELOW IS USED AS FILLER -->
+    <h1 id="filler-element" style="color:white">THIS IS T </h1> 
+    <h1 id="logo">Tiktok Pets</h1>
+    <input type="button" value="Add New" id="addNew">
+  </div>
 
-<div class="main-container">
-  <h2>Video <span id="dynamic-part"></span> submitted successfully!</h2>
-  <input type="button" value="Continue" id="redirect-page-continue">
+<div class="main-container" id="main-container">
+  <h2>Please upload 8 videos to continue:</h2>
 </div>
 
 </body>

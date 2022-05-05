@@ -1,0 +1,17 @@
+.top-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    margin:50px;
+    /* padding-left: 120px; */
+}
+.main-container{
+    display:flex;
+    flex-direction: column;
+}
+.videoDetail{
+    display:flex;
+    flex-direction: row;
+}

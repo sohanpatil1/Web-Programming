@@ -26,20 +26,46 @@ app.post("/videoData", async function (request, response){
   {
     console.log({message: "8 Elements already added"});
     response.send({message:"database full"});
+    return;
   }
   databaseCodeExample(request.body, response); //inserting to database  
   response.send({message:"got POST"});
   console.log("Sent response: got POST")
 });
 
+app.post("/deleteElement", async function (request,response){
+  let dbLengthjson = await db.get("SELECT COUNT(*) AS Counter FROM VideoTable");
+  let dbLength = dbLengthjson["Counter"]
+  if(dbLength>1)
+  {
+    await db.run("DELETE FROM videoTable WHERE nickname = ?;",request.body);
+    response.send({message:"Deleted Element"});
+    return;
+  }
+  else  //Cannot delete any element
+  {
+    response.send({message: "Length: 0"});
+    return;
+  }
+})
+
+app.get("/getAll" , async function(request,response){  
+  db.all("SELECT * FROM VideoTable")
+  .then((value)=>{
+    console.log("This is the dumptable",value)
+    response.send({message:value})
+  })
+  .catch((error) =>{
+    console.log(error)
+  });
+});
+
 
 app.get("/getMostRecent" , async function(request,response){  
-  await db.all("SELECT * FROM VideoTable WHERE flag=1")
-  // await db.run("UPDATE VideoTable SET flag=0 where flag=1")
+  db.all("SELECT * FROM VideoTable WHERE flag=1")
   .then((value)=>{
     console.log("This is the response",value)
-    response.send(value)
-    
+    response.send({message:value})
   })
   .catch((error) =>{
     console.log(error)
@@ -89,7 +115,7 @@ async function insertVideo(v) {
   v = JSON.parse(v)
   let dbLengthjson = await db.get("SELECT COUNT(*) AS Counter FROM VideoTable");
   let dbLength = dbLengthjson["Counter"]
-  if(dbLength>1)
+  if(dbLength>=1)
   {
     cmd = "UPDATE VideoTable SET flag=0 where flag=1;";
     await db.run(cmd);

@@ -1,8 +1,16 @@
-'use strict';  // always start with this 
+// 'use strict';  // always start with this 
 
 let submit_button = document.getElementById("submitContinue");
 
 submit_button.addEventListener("click", submitFormContents);
+
+let getAll_button = document.getElementById("getAllButton");
+
+getAll_button.addEventListener("click", getAll);
+
+let myVideos_button = document.getElementById("myVideos");
+
+myVideos_button.addEventListener("click", myVideos);
 
 async function postContents(vidContents) {
     const response = await fetch("/videoData", {
@@ -24,6 +32,7 @@ async function postContents(vidContents) {
             console.log(response)
         }
     }
+    console.log("JSONResponse from Post contents: ",jsonResponse)
     return jsonResponse;
 }
 
@@ -31,14 +40,33 @@ async function getContents(){
     const response = await fetch("/getMostRecent", {
         method: 'GET',
     });
-    console.log(response.json())
-    // let jsonResponse = response.json();
-    
+    console.log("hello world")
+    let jsonResponse = await response.json();
+    console.log("JSONResponse from getContents: ",jsonResponse)
+
     if (response.status == 200){
+        console.log("We got this content: ",jsonResponse.message)
         location.href = "./videoPreview.html";
-    }
-    console.log("We got this content: ",response)
-    return response;
+    } 
+    return jsonResponse;
+}
+
+async function getAll(){
+    const response = await fetch("/getAll", {
+        method: 'GET',
+    });
+    let jsonResponse = await response.json();
+    console.log("GetAll: ",jsonResponse)
+
+    if (response.status == 200){
+        console.log("All values: ",jsonResponse.message)
+        location.href = "./videoPreview.html";
+    } 
+    return jsonResponse
+}
+
+async function myVideos(){
+    location.href = "./myVideos.html"
 }
 
 function submitFormContents(){

@@ -3,13 +3,14 @@
 <html lang=en>
 
 <head>
-  <title>TTPets Video Viewer</title>
+  <title>Tiktok Video Viewer</title>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" type="text/css" href="https://ecs-162-spring-2022.profamenta.repl.co/reset.css" />
   <link rel="stylesheet" type="text/css" href="videoPreview.css" />
-  <script defer 
-    src="videoPreview.js" id="ourScript"></script>
+  <script defer src="videoPreview.js" id="ourScript"></script>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:400,700">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Boogaloo:400,700">
 </head>
 
 <body>
@@ -17,11 +18,12 @@
 
     <div class="video">
         <div id="tiktokDiv"></div>
+        <span id="dynamic-part"></span>
     </div>
     
     <button id="reload">Reload</button>
     
   </main>
-  
+  <button id="continueButton">Continue</button>
   </body>
   </html>

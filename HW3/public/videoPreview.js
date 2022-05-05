@@ -1,8 +1,54 @@
-// This viewer takes a TikTok video URL and displays it in a nice magenta box, and gives it a reload button in case you want to watch it again. 
+/*
+Example Video Links
+video = "https://www.tiktok.com/@hannahbrit36/video/7063550723329379630"
+video = "https://www.tiktok.com/@afvofficial/video/7077586589958032686"
+video = "https://www.tiktok.com/@_catben_/video/7086928829062630698"
+video = "https://www.tiktok.com/@jkentrn/video/7093549978513181995"
+*/
 
-// for example, these are hardcoded
-const example = 'https://www.tiktok.com/@cheyennebaker1/video/7088856562982423854';
 
+let continue_button = document.getElementById("continueButton");
+
+continue_button.addEventListener("click", continueButton);
+
+
+async function getMostRecent(){
+  const response = await fetch("/getMostRecent", {
+      method: 'GET',
+  });
+  let jsonResponse = await response.json();
+  console.log("GetMostRecent: ",jsonResponse);
+
+  if (response.status == 200){
+      console.log("Video Details shown from VideoPreview.js file : ",jsonResponse.message);
+      return jsonResponse.message;
+  } 
+}
+
+async function continueButton(){
+  const response = await fetch("/getMostRecent", {
+      method: 'GET',
+  });
+  let jsonResponse = await response.json();
+  console.log("GetMostRecent: ",jsonResponse);
+
+  if (response.status == 200){
+      console.log("Video Details shown from VideoPreview.js file : ",jsonResponse.message);
+      location.href = "./myVideos.html"
+  } 
+}
+
+let example = getMostRecent()
+.then(content => {
+  console.log("Received Most Recent Video in VideoPreview.js file: ",content[0])
+  addVideo(content[0]['url'],divElmt);
+  document.getElementById("dynamic-part").textContent = content[0]['nickname'];
+  return content[0]['url']
+})
+.catch(error => {
+  console.error('Error:', error);
+})
+console.log("Example is ",example)
 
 // grab elements we'll use 
 // these are global! 
@@ -13,7 +59,7 @@ let divElmt = document.getElementById("tiktokDiv");
 reloadButton.addEventListener("click",reloadVideo);
 
 // add the blockquote element that TikTok wants to load the video into
-addVideo(example,divElmt);
+// addVideo(example['url'],divElmt);
 
 // on start-up, load the videos
 loadTheVideos();
