@@ -25,7 +25,7 @@ async function postContents(vidContents) {
     if (response.status == 200){
         if(jsonResponse.message == "database full")
         {
-            alert("The database is full")
+            alert("The database is full. Continue by clicking on My Videos")
         }
         else
         {
@@ -94,14 +94,16 @@ function submitFormContents(){
     postContents(obj)
     .then(data => {
         console.log("Response from server:", data);
-        
-        getContents()
-        .then(content => {
-            console.log("Content from server: ",content)
-        })
-        .catch(error => {
-            console.error('Error:', error);
-        })
+        if(data.message != "database full")
+        {
+            getContents()
+            .then(content => {
+                console.log("Content from server: ",content)
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            })
+        }
     })
     .catch(error => {
         console.error('Error:', error);

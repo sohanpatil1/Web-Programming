@@ -4,6 +4,7 @@ const express = require("express");
 const { type } = require("express/lib/response");
 const app = express();
 const db = require('./public/sqlWrap');
+app.use(express.text());	
 
 
 // Code in this section sets up an express pipeline
@@ -22,7 +23,7 @@ app.use(express.json());
 app.post("/videoData", async function (request, response){
   let dbLengthjson = await db.get("SELECT COUNT(*) AS Counter FROM VideoTable");
   let dbLength = dbLengthjson["Counter"]
-  if(dbLength>=20)
+  if(dbLength>=8)
   {
     console.log({message: "8 Elements already added"});
     response.send({message:"database full"});
@@ -34,12 +35,15 @@ app.post("/videoData", async function (request, response){
 });
 
 app.post("/deleteElement", async function (request,response){
+  // await console.log("Initial Database looked like this: ",dumpTable())
   let dbLengthjson = await db.get("SELECT COUNT(*) AS Counter FROM VideoTable");
   let dbLength = dbLengthjson["Counter"]
+  console.log(request)
   if(dbLength>1)
   {
     await db.run("DELETE FROM videoTable WHERE nickname = ?;",request.body);
     response.send({message:"Deleted Element"});
+    // await console.log("Final Database looked like this: ",dumpTable())
     return;
   }
   else  //Cannot delete any element
