@@ -25,42 +25,46 @@ getAll()
 .then(content => {    
     var size = Object.keys(content['message']).length;
     parent = document.getElementById("main-container")
-    
-    for (let i=1; i<=8; i++) 
+    console.log("The size of the database: ",size)
+    for (let i=0; i<8; i++) 
     {
-      if(i<=size)
+      if(i<size)
       {
         let nickname = content["message"][i]["nickname"];
         let div = document.createElement("div");  //Make a div
         div.classList.add("videoLine"); //Add classname
         div.setAttribute("id", "div"+i)
-        let p = document.createElement("div");  //Make a p tag
+        let p = document.createElement("input");  //Make a p tag
         p.classList.add("videoName");     //Add classname to p tag
-        p.textContent = nickname
+        p.placeholder = nickname;
+        p.readOnly = true;
         div.appendChild(p);               //The paragraph is appended to child
-        let X = document.createElement("p")
-        X.classList.add("deleteRow")
-        X.setAttribute("id", "div"+i)
-        X.textContent = 'X'
-        div.appendChild(X)
+        let X = document.createElement("p");
+        X.classList.add("deleteRow");
+        X.setAttribute("id", "div"+i);
+        X.textContent = 'X';
+        div.appendChild(X);
+        p.style = "border : solid; border-radius : 15px";
         parent.appendChild(div);
-        X.addEventListener("click", deleteRow)
+        X.addEventListener("click", deleteRow);
       }
       else{
         console.log("Adding extra content for ",i)
         let div = document.createElement("div");  //Make a div
         div.classList.add("videoLine"); //Add classname
         div.setAttribute("id", "div"+i)
-        let p = document.createElement("p");  //Make a p tag
+        let p = document.createElement("input");  //Make a p tag
         p.classList.add("videoName");
         div.appendChild(p);               //The paragraph is appended to child
-        let X = document.createElement("p")
-        X.classList.add("deleteRow")
-        X.setAttribute("id", "div"+i)
-        X.textContent = 'X'
-        div.appendChild(X)
+        let X = document.createElement("p");
+        X.classList.add("deleteRow");
+        X.setAttribute("id", "div"+i);
+        X.textContent = 'X';
+        // p.readOnly = true;
+        div.appendChild(X);
+        p.style = "border : dashed; border-radius : 15px";
         parent.appendChild(div);
-        X.addEventListener("click", deleteRow)
+        X.addEventListener("click", deleteRow);
       }
     }
 })

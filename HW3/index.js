@@ -39,7 +39,7 @@ app.post("/deleteElement", async function (request,response){
   let dbLengthjson = await db.get("SELECT COUNT(*) AS Counter FROM VideoTable");
   let dbLength = dbLengthjson["Counter"]
   console.log(request)
-  if(dbLength>1)
+  if(dbLength>=1)
   {
     await db.run("DELETE FROM videoTable WHERE nickname = ?;",request.body);
     response.send({message:"Deleted Element"});
